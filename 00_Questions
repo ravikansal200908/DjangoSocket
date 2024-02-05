@@ -1,0 +1,15 @@
+- Need of django socket?
+- What is full duplex protocol two way communication?
+- Websocke is persistence connection or not?
+- What is handshake?
+- What is stateful protocol?
+- Which schema websocket use? ws or wss
+- How websocket works?
+- Who can close websocket request/connection?
+- How http is different from websocket?
+- When we should use/not use websocket?
+- Ajax vs Websocket?
+
+- Steps to configure django channel
+- What are steps to create consumers?
+- What is purpose of routing?
