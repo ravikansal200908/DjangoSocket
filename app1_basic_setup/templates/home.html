@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>This is home page.</h3>
+</body>
+
+</html>
+<script>
+    var ws = new WebSocket("ws://127.0.0.1:9090/ws/sync-call/")
+
+    ws.onopen = function (event) {
+        console.log("Websocket connection open...", event);
+
+        // send data to sever once open connection
+        ws.send("Hi from client.")
+    }
+
+    ws.onmessage = function (event) {
+        // console.log("Message received from server. ", event);
+        console.log('Data is : ', event['data'])
+    }
+
+    ws.onerror = function (event) {
+        console.log("Message error occurred. ", event);
+    }
+
+    ws.onclose = function (event) {
+        console.log("Message connection closed. ", event);
+    }
+
+    // with event listener
+
+    // ws.addEventListener('open', (event) => {
+    //     console.log("Websocket connection open... Listener : ", event);
+
+    //     // send data to sever once open connection
+    //     ws.send("Hi from client.")
+    // })
+
+    // ws.addEventListener('message', (event) => {
+    //     console.log('Data is Listener : ', event['data'])
+    // })
+
+    // ws.addEventListener('error', (event) => {
+    //     console.log("Message error occurred Listener. ", event);
+    // })
+
+    // ws.addEventListener('close', (event) => {
+    //     console.log("Message connection closed Listener. ", event);
+    // })
+
+</script>
