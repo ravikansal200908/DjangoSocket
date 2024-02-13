@@ -13,3 +13,9 @@
 - Steps to configure django channel
 - What are steps to create consumers?
 - What is purpose of routing?
+
+- What is django channel layer?
+- Worked with Redis Channel Layer?
+- Purpose of Channel, Groups and Message
+
+- Please confirm channel methods are by default sync or async?

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>This is home page. App-2</h3>
+    <textarea name="chat-window" id="chat-window" cols="80" rows="20" readonly></textarea>
+    <br><br>
+    <input type="text" id="chat-msg"> <input type="button" value="Send" id="chat-msg-submit">
+</body>
+
+</html>
+<script>
+    var ws = new WebSocket("ws://192.168.1.16:9090/ws/async-call/channel/")
+
+    ws.onopen = function (event) {
+        console.log("Websocket connection open...", event);
+
+        // send data to sever once open connection
+        // ws.send("Hi from client.")
+    }
+
+    ws.onmessage = function (event) {
+        console.log("Message received from server. ")
+        console.log('Type : ', typeof (event.data))
+        const data = JSON.parse(event.data)  // String to Object
+        console.log("Actual msg : ", data.msg)
+
+        document.querySelector("#chat-window").value += (data.msg + '\n')
+
+    }
+
+    ws.onerror = function (event) {
+        console.log("Message error occurred. ", event);
+    }
+
+    ws.onclose = function (event) {
+        console.log("Message connection closed. ", event);
+    }
+
+    document.getElementById("chat-msg-submit").onclick =
+        function (event) {
+            const msg_dom = document.getElementById("chat-msg")
+            const msg = msg_dom.value
+            console.log('Msg is : ' + msg)
+            ws.send(
+                JSON.stringify({  // Object to String
+                    "msg": msg
+                })
+            )
+            msg_dom.value = ''
+        }
+
+</script>
