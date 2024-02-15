@@ -11,12 +11,8 @@ class MyAsyncConsumer(AsyncConsumer):
         print("self.channel_layer : ", self.channel_layer)
         print("self.channel_name : ", self.channel_name)
 
-        self.group_name = self.scope['url_route']['kwargs']['group_name']
-
-        print(f'{self.group_name=}')
-
         await self.channel_layer.group_add(
-            self.group_name,
+            "python-group",
             self.channel_name
             )
         await self.send({
@@ -33,7 +29,7 @@ class MyAsyncConsumer(AsyncConsumer):
         print(type(event["text"]))
 
         await self.channel_layer.group_send(
-            self.group_name,
+            "python-group",
             {
                 'type': 'chat.message',
                 'message': event['text']
@@ -59,7 +55,7 @@ class MyAsyncConsumer(AsyncConsumer):
         print("self.channel_name : ", self.channel_name)
 
         self.channel_layer.group_discard(
-            self.group_name,
+            "python-group",
             self.channel_name
             )
 

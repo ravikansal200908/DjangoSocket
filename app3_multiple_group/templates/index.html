@@ -9,27 +9,15 @@
 </head>
 
 <body>
-    <h3>Welcome {{group_name}}</h3>
+    <h3>This is home page. App-2</h3>
     <textarea name="chat-window" id="chat-window" cols="80" rows="20" readonly></textarea>
     <br><br>
     <input type="text" id="chat-msg"> <input type="button" value="Send" id="chat-msg-submit">
-
 </body>
 
 </html>
 <script>
-    const group_name = "{{ group_name }}"
-
-    console.log('group_name : ' + group_name)
-    // var ws = new WebSocket("ws://127.0.0.1:9090/ws/async-call/channel/")
-
-    var ws = new WebSocket(
-        'ws://'
-        + window.location.host
-        + '/ws/group/'
-        + group_name
-        + '/'
-    )
+    var ws = new WebSocket("ws://192.168.136.128:9090/ws/async-call/channel/")
 
     ws.onopen = function (event) {
         console.log("Websocket connection open...", event);

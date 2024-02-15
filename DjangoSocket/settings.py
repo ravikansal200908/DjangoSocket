@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     "app1_basic_setup",
     "app2_channel_group",
+    "app3_multiple_group"
 ]
 
 MIDDLEWARE = [
